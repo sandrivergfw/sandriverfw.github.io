@@ -93,7 +93,63 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h1 id="How-to-get-your-own-site"><a href="#How-to-get-your-own-site" class="headerlink" title="How to get your own site"></a>How to get your own site</h1><blockquote>
+<p>一篇通过Hexo部署个人博客的简单总结</p>
+</blockquote>
+<ul>
+<li><a href="#how-to-get-your-own-site">How to get your own site</a><ul>
+<li><a href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">环境搭建</a><ul>
+<li><a href="#git">Git</a><ul>
+<li><a href="#login">login</a></li>
+<li><a href="#ssh%E5%AF%86%E9%92%A5">ssh密钥</a></li>
+<li><a href="#githubio">github.io</a></li>
+</ul>
+</li>
+<li><a href="#node--cnpm--hexo">node &amp; cnpm &amp; hexo</a></li>
+</ul>
+</li>
+<li><a href="#%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5">部署到github个人主页</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96">其他</a><ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91">一些踩过的坑</a></li>
+<li><a href="#references">references</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>在官网下载Git后，依次执行以下命令在本地配置仓库权限</p>
+<h4 id="login"><a href="#login" class="headerlink" title="login"></a>login</h4><p>进入Git bash</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="keyword">global</span> user.name <span class="string">&quot;你注册时的用户名&quot;</span></span><br><span class="line">git config --<span class="keyword">global</span> user.email <span class="string">&quot;注册时的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="ssh密钥"><a href="#ssh密钥" class="headerlink" title="ssh密钥"></a>ssh密钥</h4><p>在Git Bash中输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;your email&quot;</span></span><br><span class="line">cat id_rsa.pub <span class="string">&quot;copy it&quot;</span></span><br></pre></td></tr></table></figure>
+<p>来到Github个人页面的<code>setting-&gt;Deploy keys-&gt;Add deploy key-&gt;key</code>，粘贴刚刚复制的ssh密钥，title随便填<br><img src="/2022-09-05-00-04-37.png"></p>
+<h4 id="github-io"><a href="#github-io" class="headerlink" title="github.io"></a>github.io</h4><p>新建一个名为yourname.github.io的仓库</p>
+<h3 id="node-amp-cnpm-amp-hexo"><a href="#node-amp-cnpm-amp-hexo" class="headerlink" title="node &amp; cnpm &amp; hexo"></a>node &amp; cnpm &amp; hexo</h3><p><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">node.js</a>官网安装nodejs</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v <span class="comment">#查看版本/是否安装成功</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry==https://registry.npm.taobao.org </span><br><span class="line"><span class="comment"># 安装cnpm</span></span><br><span class="line">cnpm -v</span><br><span class="line"><span class="comment"># 查看版本/是否安装成功</span></span><br><span class="line">cnpm install -g hexo-clicnpm install -g hexo-cli</span><br><span class="line"><span class="comment"># 安装hexo</span></span><br><span class="line">hexo -v</span><br><span class="line"><span class="comment"># 查看版本/是否安装成功 </span></span><br><span class="line">mkdir Blog</span><br><span class="line"><span class="comment"># 新建博客文件夹，可以在任何位置</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment"># 初始化hexo</span></span><br><span class="line">hexo g</span><br><span class="line"><span class="comment"># 生成</span></span><br><span class="line">hexo s</span><br><span class="line"><span class="comment"># 启动服务，本地预览</span></span><br></pre></td></tr></table></figure>
+<h2 id="部署到github个人主页"><a href="#部署到github个人主页" class="headerlink" title="部署到github个人主页"></a>部署到github个人主页</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载hexo-deployer-git插件</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>修改<code>Blog\_config.yml</code>文件配置为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: github上对应仓库的ssh 链接              </span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<p>之后将本地博客推送到github仓库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d </span><br></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ol>
+<li>新建md文件<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;title&quot;</span></span><br><span class="line"><span class="comment">#文件位于Blog\source\_posts</span></span><br></pre></td></tr></table></figure></li>
+<li>新建其他文件<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一般是页面配置的一些文件</span></span><br><span class="line">hexo new page <span class="string">&quot;about&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>删除文章<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm Blog\_post\target.md</span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></li>
+<li>本地预览<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="一些踩过的坑"><a href="#一些踩过的坑" class="headerlink" title="一些踩过的坑"></a>一些踩过的坑</h3><ol>
+<li>要记得配ssh密钥（<del>一直以来只配了oo账号的ssh(×)</del>)，否则会在<code>hexo d</code>的时候出现permission denied</li>
+<li>npm下载插件速度慢，卡在sill idealTree buildDeps<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 打开cmd 配置淘宝镜像</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 关闭上面cmd, 打开一个新的cmd 安装vue/cli(之前在一个cmd连续执行,总会卡死)</span><br><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="references"><a href="#references" class="headerlink" title="references"></a>references</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42490383/article/details/125895180">https://blog.csdn.net/weixin_42490383/article/details/125895180</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ItDaChuang/article/details/111261426">https://blog.csdn.net/ItDaChuang/article/details/111261426</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44732432/article/details/124714408">https://blog.csdn.net/qq_44732432/article/details/124714408</a></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
