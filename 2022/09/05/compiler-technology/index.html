@@ -16,35 +16,29 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="时间复杂度分析时间复杂度分析方法有以下三种：  递归树法 代入法 主定理法  递归树法以归并排序为例，时间复杂度的递归表达式为画出该表达式的递归树 →下的若干分叉表示当前节点的复杂度由下属子结点的复杂度组成。则根节点的复杂度等于叶子结点的复杂度之和。即若干O(1)的叶子结点和红色部分的O(n&#x2F;x)之和。  递归树的深度（从根节点到最底层）为$log_2 n$，每一层的O(n&#x2F;x">
+    <meta name="description" content="词法分析 输出形式词法分析程序将单词按照内部形式输出，有以下几种方案：  按单词种类分类 保留字和分界符一符一类 标识符和常数的单词值作为指示字  （左）正则文法与状态机正则文法例如：  Z::&#x3D;U0|V1 U::&#x3D;Z1|1 V::&#x3D;Z0|0正则文法是 型文法  由正则文法得到对应的状态图，其组成成分如下：  初始状态：空字符串 状态：非终结符 触发：终结符 终止状态">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法-分而治之">
-<meta property="og:url" content="http://example.com/2022/09/06/%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="compiler theory">
+<meta property="og:url" content="http://example.com/2022/09/05/compiler-technology/index.html">
 <meta property="og:site_name" content="z&#39;s blog">
-<meta property="og:description" content="时间复杂度分析时间复杂度分析方法有以下三种：  递归树法 代入法 主定理法  递归树法以归并排序为例，时间复杂度的递归表达式为画出该表达式的递归树 →下的若干分叉表示当前节点的复杂度由下属子结点的复杂度组成。则根节点的复杂度等于叶子结点的复杂度之和。即若干O(1)的叶子结点和红色部分的O(n&#x2F;x)之和。  递归树的深度（从根节点到最底层）为$log_2 n$，每一层的O(n&#x2F;x">
+<meta property="og:description" content="词法分析 输出形式词法分析程序将单词按照内部形式输出，有以下几种方案：  按单词种类分类 保留字和分界符一符一类 标识符和常数的单词值作为指示字  （左）正则文法与状态机正则文法例如：  Z::&#x3D;U0|V1 U::&#x3D;Z1|1 V::&#x3D;Z0|0正则文法是 型文法  由正则文法得到对应的状态图，其组成成分如下：  初始状态：空字符串 状态：非终结符 触发：终结符 终止状态">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022-09-07-12-58-45.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-00-16.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-24-20.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-13-54.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-24-35.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-28-32.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-33-47.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-36-31.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-42-55.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-53-17.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-54-47.png">
-<meta property="og:image" content="http://example.com/2022-09-07-13-56-09.png">
-<meta property="og:image" content="http://example.com/2022-09-07-14-03-56.png">
-<meta property="article:published_time" content="2022-09-06T15:58:18.000Z">
-<meta property="article:modified_time" content="2022-09-07T06:05:00.948Z">
+<meta property="og:image" content="http://example.com/2022-09-08-11-30-08.png">
+<meta property="og:image" content="http://example.com/2022-09-08-11-34-38.png">
+<meta property="og:image" content="http://example.com/2022-09-08-11-34-58.png">
+<meta property="og:image" content="http://example.com/2022-09-08-10-28-15.png">
+<meta property="og:image" content="http://example.com/2022-09-08-11-03-45.png">
+<meta property="og:image" content="http://example.com/2022-09-08-11-01-14.png">
+<meta property="og:image" content="http://example.com/2022-09-08-11-08-25.png">
+<meta property="article:published_time" content="2022-09-05T07:52:24.000Z">
+<meta property="article:modified_time" content="2022-09-08T03:35:52.294Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022-09-07-12-58-45.png">
+<meta name="twitter:image" content="http://example.com/2022-09-08-11-30-08.png">
   
   
   
-  <title>算法-分而治之 - z&#39;s blog</title>
+  <title>compiler theory - z&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="算法-分而治之"></span>
+            <span id="subtitle" data-typed-text="compiler theory"></span>
           
         </div>
 
@@ -220,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-06 23:58" pubdate>
-          September 6, 2022 pm
+        <time datetime="2022-09-05 15:52" pubdate>
+          September 5, 2022 pm
         </time>
       </span>
     
@@ -232,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          689 words
         
       </span>
     
@@ -243,7 +237,7 @@
         
         
         
-          10 mins
+          6 mins
         
       </span>
     
@@ -281,51 +275,55 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">算法-分而治之</h1>
+            <h1 style="display: none">compiler theory</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><p>时间复杂度分析方法有以下三种：</p>
-<ul>
-<li>递归树法</li>
-<li>代入法</li>
-<li>主定理法</li>
-</ul>
-<h3 id="递归树法"><a href="#递归树法" class="headerlink" title="递归树法"></a>递归树法</h3><p>以归并排序为例，时间复杂度的递归表达式为<br><img src="/2022-09-07-12-58-45.png" srcset="/img/loading.gif" lazyload><br>画出该表达式的递归树<br><img src="/2022-09-07-13-00-16.png" srcset="/img/loading.gif" lazyload><br> →下的若干分叉表示当前节点的复杂度由下属子结点的复杂度组成。则根节点的复杂度等于叶子结点的复杂度之和。即若干O(1)的叶子结点和红色部分的O(n&#x2F;x)之和。</p>
-<p> 递归树的深度（从根节点到最底层）为$log_2 n$，每一层的O(n&#x2F;x)部分相加为n。则红色部分的复杂度相加为$nlog_2 n$</p>
-<p>最底层的黑色叶子结点共有$2^{log_2 n}&#x3D;n$个，每个叶子结点的复杂度为O(1)，所以黑色部分的复杂度相加为$n+nlog_2 n$</p>
-<p>故T(n)&#x3D;O(nlogn)</p>
-<p>类似地，对于下面的复杂度递归式，可做出同样的分析，唯一不同的是该递归树的各个子树的规模不同，为此我们考虑树高最大为$log_{\frac{4}{3}} n+1$，最底层的n&#x2F;x部分相加小于等于n。<br><img src="/2022-09-07-13-24-20.png" srcset="/img/loading.gif" lazyload><br><img src="/2022-09-07-13-13-54.png" srcset="/img/loading.gif" lazyload></p>
-<p>故$T(n) \leq nlog_{\frac{4}{3}} n + 2^{log_{\frac{4}{3}} n}  ,T(n)&#x3D;O(nlogn)$</p>
-<p>接下来，思考该界是否为渐进紧确界。引入<strong>代入法</strong>进行说明</p>
-<h3 id="代入法"><a href="#代入法" class="headerlink" title="代入法"></a>代入法</h3><p>代入法的主要作用&#x2F;流程是：</p>
-<ul>
-<li>得到算法的时间复杂度递归表达式</li>
-<li>猜测算法的渐进紧确界</li>
-<li>利用数学归纳法进行归纳验证</li>
-</ul>
-<p>以上述的复杂度表达式为例<img src="/2022-09-07-13-24-35.png" srcset="/img/loading.gif" lazyload><br>猜测算法的渐进紧确界为$T(n)&#x3D;\Theta(nlogn)$，接下来利用数学归纳法进行证明<br><img src="/2022-09-07-13-28-32.png" srcset="/img/loading.gif" lazyload></p>
-<p>这种方法具有很大的局限性，当猜测解不易得到时我们就需要用到<strong>主定理法</strong>了。</p>
-<h3 id="主定理法"><a href="#主定理法" class="headerlink" title="主定理法"></a>主定理法</h3><p>主定理法关注形如$T(n)&#x3D;aT(\frac{n}{b})+f(n)$的一类递归式。</p>
-<p>首先画出递归树进行分析<br><img src="/2022-09-07-13-33-47.png" srcset="/img/loading.gif" lazyload><br>树高$log_b n$，最终共产生O(1)的普通叶子结点$a^{log_b n}&#x3D;n^{log_b a}$和常量叶子若干，则可推出T(n)<br><img src="/2022-09-07-13-36-31.png" srcset="/img/loading.gif" lazyload></p>
-<p>考虑Taylor公式得到主定理如下：<br><img src="/2022-09-07-13-42-55.png" srcset="/img/loading.gif" lazyload><br>上图所做的比较实际是在衡量分而治之过程中的分解规模带来的影响与递归合并带来的影响之间的平衡。</p>
-<p>特别地，对于$f(n)&#x3D;n^k$的简化情况，主定理可以相应地化简为以下形式（<strong>重要</strong>）</p>
-<p>在某些情况下，落入①②或②③的条件中间，此种情况下可以使用主定理的扩展形式<br><img src="/2022-09-07-13-53-17.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>问题：求解数组的非空子数组，使子数组元素之和最大<br><img src="/2022-09-07-13-54-47.png" srcset="/img/loading.gif" lazyload><br>利用分而治之的思想做出尝试：</p>
-<ul>
-<li>分解问题</li>
-<li>递归求解 </li>
-<li>合并</li>
-</ul>
-<p>首先尝试将数组一分为二<br><img src="/2022-09-07-13-56-09.png" srcset="/img/loading.gif" lazyload><br>接下来考虑递归求解，原数组的最大非空子数组可能的情况有：</p>
+                <h2 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h2><p><img src="/2022-09-08-11-30-08.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="输出形式"><a href="#输出形式" class="headerlink" title="输出形式"></a>输出形式</h3><p>词法分析程序将单词按照内部形式输出，有以下几种方案：</p>
 <ol>
-<li>等于原数组左半部分的最大非空子数组</li>
-<li>等于原数组右半部分的最大非空子数组</li>
-<li>横跨原数组的左右半部</li>
+<li>按单词种类分类</li>
+<li>保留字和分界符一符一类</li>
+<li>标识符和常数的单词值作为指示字<br><img src="/2022-09-08-11-34-38.png" srcset="/img/loading.gif" lazyload><br><img src="/2022-09-08-11-34-58.png" srcset="/img/loading.gif" lazyload></li>
 </ol>
-<p>分别记数组X左半部分的最大子数组，数组X右半部分的最大子数组，跨越重点的最大子数组为$S_1,S_2,S_3$，则数组X的最大子数组为$S_max&#x3D;max{S_1,S_2,S_3}$</p>
-<p>接下来求解$S_3$<br><img src="/2022-09-07-14-03-56.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="（左）正则文法与状态机"><a href="#（左）正则文法与状态机" class="headerlink" title="（左）正则文法与状态机"></a>（左）正则文法与状态机</h3><p><strong>正则文法</strong><br>例如：</p>
+<ul>
+<li>Z::&#x3D;U0|V1</li>
+<li>U::&#x3D;Z1|1</li>
+<li>V::&#x3D;Z0|0<br>正则文法是 型文法</li>
+</ul>
+<p>由正则文法得到对应的<strong>状态图</strong>，其组成成分如下：</p>
+<ul>
+<li>初始状态：空字符串</li>
+<li>状态：非终结符</li>
+<li>触发：终结符</li>
+<li><strong>终止状态</strong>：文法的开始符号</li>
+</ul>
+<p><img src="/2022-09-08-10-28-15.png" srcset="/img/loading.gif" lazyload></p>
+<p>输入字符串，由空串状态进行字符的读入和分析，在此过程进行状态之间的转换，若最终到达终止状态，则该字符串符合文法的规则。</p>
+<p>上述过程实际是句子从左到右扫描字符向上规约到根节点的过程。（自底向上）</p>
+<blockquote>
+<p>TODO:确定句柄</p>
+</blockquote>
+<h3 id="实现程序"><a href="#实现程序" class="headerlink" title="实现程序"></a>实现程序</h3><p>（简易）状态机如图，词法分析程序所要完成的工作就是读入字符并遍历状态机进行规约<br><img src="/2022-09-08-11-03-45.png" srcset="/img/loading.gif" lazyload><br>在程序读入过程中存在一个回退的过程：当识别出某一token(x)时，实际多读了一个字符(x&#x3D;)，故需要回退一个字符一遍下一个token的分析判断</p>
+<p>此外还需进行数据结构的建立</p>
+<ul>
+<li>单词和内部表示（名称，类别编码，记忆符，单词值）</li>
+<li>设置词法分析程序所需要的公共变量和过程</li>
+</ul>
+<p><img src="/2022-09-08-11-01-14.png" srcset="/img/loading.gif" lazyload></p>
+<p>伪代码如下：</p>
+<p><img src="/2022-09-08-11-08-25.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h2><p>语法分析的基本功能是从源程序的单词符号串中识别出（句子层面的）语法成分并进行语法检查。</p>
+<p>两大分析方法是自顶向下和自底向上</p>
+<h3 id="自顶向下分析算法"><a href="#自顶向下分析算法" class="headerlink" title="自顶向下分析算法"></a>自顶向下分析算法</h3><p>自顶向下的分析过程是设法建立一颗语法树，使得语法树的末端节点组成目标符号串。分析过程是不断试探的过程，当发现某一推导无法匹配字符串时，需要<strong>回溯</strong>并更换推导所用的规则。</p>
+<p>自顶向下的两个主要问题是<strong>左递归问题</strong>（死循环）和<strong>回溯问题</strong>（效率问题）。</p>
+<h4 id="左递归"><a href="#左递归" class="headerlink" title="左递归"></a>左递归</h4><p>消除左递归的方法为</p>
+<ol>
+<li>使用扩充的BNF规则</li>
+<li>改写为右递归</li>
+</ol>
 
                 
               </div>
@@ -343,8 +341,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>算法-分而治之</div>
-      <div>http://example.com/2022/09/06/算法/</div>
+      <div>compiler theory</div>
+      <div>http://example.com/2022/09/05/compiler-technology/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +354,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>September 6, 2022</div>
+          <div>September 5, 2022</div>
         </div>
       
       
@@ -386,12 +384,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/09/06/%E7%AE%97%E6%B3%95/" title="算法-分而治之">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">算法-分而治之</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/05/compiler-technology/" title="compiler theory">
-                        <span class="hidden-mobile">compiler theory</span>
+                      <a href="/2022/09/04/HelloWorld/" title="HelloWorld">
+                        <span class="hidden-mobile">HelloWorld</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
