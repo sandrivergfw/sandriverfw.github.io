@@ -16,17 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Archives">
-<meta property="og:url" content="http://example.com/archives/index.html">
+    <meta name="description" content="对象属性对象：一块内存 名字对象本身没有名字，标识符赋予这块内存一个名字并被编译器记忆 对象表示对象类型+对象表示（一堆01串）决定了一个对象 trap representation：对象类型和对象表示不匹配 对象值和值类型 非数组对象类型：对象表示(01串)按规则转换成value（称为左值转换lvalue conversion），值类型&#x3D;对象类型。 数组：值&#x3D;首地址，值类型是">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="http://example.com/buffer/C%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7/20220909.html">
 <meta property="og:site_name" content="z&#39;s blog">
+<meta property="og:description" content="对象属性对象：一块内存 名字对象本身没有名字，标识符赋予这块内存一个名字并被编译器记忆 对象表示对象类型+对象表示（一堆01串）决定了一个对象 trap representation：对象类型和对象表示不匹配 对象值和值类型 非数组对象类型：对象表示(01串)按规则转换成value（称为左值转换lvalue conversion），值类型&#x3D;对象类型。 数组：值&#x3D;首地址，值类型是">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-09T09:01:04.342Z">
+<meta property="article:modified_time" content="2022-09-09T09:01:04.342Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Archives - z&#39;s blog</title>
+  <title>page.title - z&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -185,7 +189,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Archives"></span>
+            <span id="subtitle" data-typed-text="page.title"></span>
           
         </div>
 
@@ -212,41 +216,51 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">4 posts in total</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2022</p>
-    
-    <a href="/2022/09/10/JDBC/" class="list-group-item list-group-item-action">
-      <time>09-10</time>
-      <div class="list-group-item-title"></div>
-    </a>
-  
-    
-    <a href="/2022/09/06/%E7%AE%97%E6%B3%95/" class="list-group-item list-group-item-action">
-      <time>09-06</time>
-      <div class="list-group-item-title">算法-分而治之</div>
-    </a>
-  
-    
-    <a href="/2022/09/05/compiler-technology/" class="list-group-item list-group-item-action">
-      <time>09-05</time>
-      <div class="list-group-item-title">compiler theory</div>
-    </a>
-  
-    
-    <a href="/2022/09/04/HelloWorld/" class="list-group-item list-group-item-action">
-      <time>09-04</time>
-      <div class="list-group-item-title">HelloWorld</div>
-    </a>
-  
-</div>
+<article class="page-content">
+  <h3 id="对象属性"><a href="#对象属性" class="headerlink" title="对象属性"></a>对象属性</h3><p>对象：一块内存</p>
+<h4 id="名字"><a href="#名字" class="headerlink" title="名字"></a>名字</h4><p>对象本身没有名字，标识符赋予这块内存一个名字并被编译器记忆</p>
+<h4 id="对象表示"><a href="#对象表示" class="headerlink" title="对象表示"></a>对象表示</h4><p>对象类型+对象表示（一堆01串）决定了一个对象</p>
+<p><strong>trap representation</strong>：对象类型和对象表示不匹配</p>
+<h4 id="对象值和值类型"><a href="#对象值和值类型" class="headerlink" title="对象值和值类型"></a>对象值和值类型</h4><ol>
+<li>非数组对象类型：对象表示(01串)按规则转换成value（称为左值转换lvalue conversion），值类型&#x3D;对象类型。</li>
+<li>数组：值&#x3D;首地址，值类型是元素类型对应的指针</li>
+</ol>
+<p>值的取值和值类型和对象类型有关。</p>
+<p>直观理解：打印一个数组，得到地址。</p>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><ol>
+<li>int a </li>
+<li>malloc</li>
+</ol>
+<h4 id="int-a"><a href="#int-a" class="headerlink" title="int a"></a>int a</h4><p>这个过程完成了： </p>
+<ul>
+<li>分配4个连续byte</li>
+<li>变量标识符a标识了这一块内存（对象）</li>
+</ul>
+<p>描述变量a对应的内存</p>
+<ol>
+<li>内存地址 </li>
+<li>变量类型 </li>
+<li>内存别名 </li>
+<li>内存大小</li>
+</ol>
+<p>从外部观察这个内存，这块内存以<strong>值</strong>的形式出现，其中值表现为值和值的类型&lt;Value,Value_Type&gt;</p>
+<p>标识符a是一个表达式（基础表达式），所以a也有值</p>
+<p>内存对应的变量类型：Object_T</p>
+<p>内存表示值和值类型V V_T </p>
+<p>a[1] a不是一个左值</p>
+<h3 id="内存六元组"><a href="#内存六元组" class="headerlink" title="内存六元组"></a>内存六元组</h3><p>Object&#x3D;{Address,Object_Type,Name,Size,Value,Value_Type} 客观存在的<br>基础表达式：标识符、字符串、常量、不知道是啥没听清 </p>
+<p>定位内存：</p>
+<ol>
+<li>名字</li>
+<li>*运算符+指针类型的地址表达式</li>
+</ol>
+<p>指针必须要赋初值</p>
+<p>int [2][3][4] int [3][4] int(*)[3][4]</p>
 
 
+  
+
+</article>
 
 
 

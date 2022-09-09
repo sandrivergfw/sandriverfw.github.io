@@ -16,17 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Archives">
-<meta property="og:url" content="http://example.com/archives/index.html">
+    <meta name="description" content="MySQL学习基本命令行操作 下载MySql,并启动数据库   12C:\Users\ZJH&gt; net start mysql -- 若出现 发生系统错误5，说明权限不够，需要以管理员身份运行  连接数据库   1234C:\Users\ZJH&gt; mysql -u root -p-- 之后系统提示输入密码，也可以按照下面直接输入密码(root是默认用户名)C:\Users\ZJH&amp;gt">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="http://example.com/buffer/db/MySQL.html">
 <meta property="og:site_name" content="z&#39;s blog">
+<meta property="og:description" content="MySQL学习基本命令行操作 下载MySql,并启动数据库   12C:\Users\ZJH&gt; net start mysql -- 若出现 发生系统错误5，说明权限不够，需要以管理员身份运行  连接数据库   1234C:\Users\ZJH&gt; mysql -u root -p-- 之后系统提示输入密码，也可以按照下面直接输入密码(root是默认用户名)C:\Users\ZJH&amp;gt">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-08T13:46:44.444Z">
+<meta property="article:modified_time" content="2022-09-08T13:46:44.444Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Archives - z&#39;s blog</title>
+  <title>page.title - z&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -185,7 +189,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Archives"></span>
+            <span id="subtitle" data-typed-text="page.title"></span>
           
         </div>
 
@@ -212,41 +216,36 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">4 posts in total</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2022</p>
-    
-    <a href="/2022/09/10/JDBC/" class="list-group-item list-group-item-action">
-      <time>09-10</time>
-      <div class="list-group-item-title"></div>
-    </a>
-  
-    
-    <a href="/2022/09/06/%E7%AE%97%E6%B3%95/" class="list-group-item list-group-item-action">
-      <time>09-06</time>
-      <div class="list-group-item-title">算法-分而治之</div>
-    </a>
-  
-    
-    <a href="/2022/09/05/compiler-technology/" class="list-group-item list-group-item-action">
-      <time>09-05</time>
-      <div class="list-group-item-title">compiler theory</div>
-    </a>
-  
-    
-    <a href="/2022/09/04/HelloWorld/" class="list-group-item list-group-item-action">
-      <time>09-04</time>
-      <div class="list-group-item-title">HelloWorld</div>
-    </a>
-  
-</div>
+<article class="page-content">
+  <h1 id="MySQL学习"><a href="#MySQL学习" class="headerlink" title="MySQL学习"></a>MySQL学习</h1><h2 id="基本命令行操作"><a href="#基本命令行操作" class="headerlink" title="基本命令行操作"></a>基本命令行操作</h2><ul>
+<li><p>下载MySql,并启动数据库</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Sql">C:\Users\ZJH<span class="hljs-operator">&gt;</span> net <span class="hljs-keyword">start</span> mysql <br><span class="hljs-comment">-- 若出现 发生系统错误5，说明权限不够，需要以管理员身份运行</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>连接数据库</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Sql">C:\Users\ZJH<span class="hljs-operator">&gt;</span> mysql <span class="hljs-operator">-</span>u root <span class="hljs-operator">-</span>p<br><span class="hljs-comment">-- 之后系统提示输入密码，也可以按照下面直接输入密码(root是默认用户名)</span><br>C:\Users\ZJH<span class="hljs-operator">&gt;</span> mysql <span class="hljs-operator">-</span>u root <span class="hljs-operator">-</span>p[password]<br><span class="hljs-comment">--p与password之间没有空格，若有空格则p之后的字符串表示要登录的数据库</span><br></code></pre></td></tr></table></figure></li>
+<li><p>查看数据库</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> databases ;<span class="hljs-comment">--要加分号</span><br></code></pre></td></tr></table></figure></li>
+<li><p>切换数据库</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Sql">mysql<span class="hljs-operator">&gt;</span> use [database_name]<br></code></pre></td></tr></table></figure></li>
+<li><p>查看数据库表</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables<br></code></pre></td></tr></table></figure></li>
+<li><p>创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> database database_name<br></code></pre></td></tr></table></figure></li>
+<li><p>查看表中信息</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">describe</span> student ; <span class="hljs-comment">--显示类型、是否为空、主键等信息</span><br></code></pre></td></tr></table></figure></li>
+<li><p>退出数据库</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Sql">mysql<span class="hljs-operator">&gt;</span> exit<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>使用图形化编辑软件Sqlyog，在历史记录中可查看Sql指令</p>
+<h2 id="数据库操作语句"><a href="#数据库操作语句" class="headerlink" title="数据库操作语句"></a>数据库操作语句</h2><p>操作数据库&gt;操作数据库中的表&gt;操作数据库中表的数据</p>
+<h3 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h3><p>会出现驱动高于5.7版本以上的SSL不安全然后巴拉巴拉</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">user</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">password</span>=<span class="hljs-string">20030816zjh</span><br><span class="hljs-attr">url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/school_test?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai</span><br><span class="hljs-attr">driver</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span><br><br></code></pre></td></tr></table></figure>
+<p>主要就是必须要设置时区否则连不上</p>
 
 
+  
+
+</article>
 
 
 
