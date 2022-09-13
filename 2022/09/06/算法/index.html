@@ -36,8 +36,9 @@
 <meta property="og:image" content="http://example.com/2022-09-07-13-54-47.png">
 <meta property="og:image" content="http://example.com/2022-09-07-13-56-09.png">
 <meta property="og:image" content="http://example.com/2022-09-07-14-03-56.png">
+<meta property="og:image" content="http://example.com/2022-09-13-10-55-46.png">
 <meta property="article:published_time" content="2022-09-06T15:58:18.000Z">
-<meta property="article:modified_time" content="2022-09-07T06:05:00.948Z">
+<meta property="article:modified_time" content="2022-09-13T02:59:10.134Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022-09-07-12-58-45.png">
@@ -232,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          2.7k words
         
       </span>
     
@@ -243,7 +244,7 @@
         
         
         
-          10 mins
+          23 mins
         
       </span>
     
@@ -318,14 +319,23 @@
 <li>递归求解 </li>
 <li>合并</li>
 </ul>
+<blockquote>
+<p>ps: 下文中提到的最大子数组均指的是最大数值</p>
+</blockquote>
 <p>首先尝试将数组一分为二<br><img src="/2022-09-07-13-56-09.png" srcset="/img/loading.gif" lazyload><br>接下来考虑递归求解，原数组的最大非空子数组可能的情况有：</p>
 <ol>
 <li>等于原数组左半部分的最大非空子数组</li>
 <li>等于原数组右半部分的最大非空子数组</li>
-<li>横跨原数组的左右半部</li>
+<li>横跨原数组的左右半部的数组的最大非空子数组</li>
 </ol>
-<p>分别记数组X左半部分的最大子数组，数组X右半部分的最大子数组，跨越重点的最大子数组为$S_1,S_2,S_3$，则数组X的最大子数组为$S_max&#x3D;max{S_1,S_2,S_3}$</p>
+<p>分别记数组X左半部分的最大子数组，数组X右半部分的最大子数组，跨越重点的最大子数组为$S_1,S_2,S_3$，则数组X的最大子数组为$S_{max}&#x3D;max{S_1,S_2,S_3}$</p>
 <p>接下来求解$S_3$<br><img src="/2022-09-07-14-03-56.png" srcset="/img/loading.gif" lazyload></p>
+<p>由此我们完成了分解问题和合并问题，接下来只需进行递归求解，并设置递归退出条件。容易发现，当数组长度为1时可以直接获得最大子数组，由此得到算法如下</p>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs C">MaxSubArray(X,low,high)&#123;<br>    <span class="hljs-comment">//解除递归条件</span><br>    <span class="hljs-keyword">if</span> low==high&#123;<br>        <span class="hljs-keyword">return</span> X[low]<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-comment">//分解问题</span><br>        mid &lt;- <span class="hljs-built_in">floor</span>((low+high)/<span class="hljs-number">2</span>)<br>        <span class="hljs-comment">//解决问题</span><br>        S1 &lt;- MaxSubArray(X,low,mid)<br>        S2 &lt;- MaxSubArray(X,mid,+<span class="hljs-number">1</span>,high)<br>        S3 &lt;- CrossingSubArray(X,low,mid,high)<br>        <span class="hljs-comment">//合并问题</span><br>        S_max = max&#123;S1,S2,S3&#125;<br>        <span class="hljs-keyword">return</span> S_max<br>    &#125;<br>&#125;<br><br>CrossingSubArray(X,low,mid,high)&#123;<br>    <span class="hljs-comment">//从中间出发,分别向左和向右出发寻找最大子数组</span><br>    S_left &lt;- -∞<br>    sum &lt;- <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i&lt;- mid downto low &#123;<br>        sum &lt;- sum + X[i]<br>        <span class="hljs-keyword">if</span> sum&gt;S_left&#123;<br>            S_left &lt;- sum<br>        &#125;<br>    &#125;<br>    S_right &lt;- -∞<br>    sum &lt;- <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i&lt;- mid upto high&#123;<br>        sum&lt;- sum+X[i]<br>        <span class="hljs-keyword">if</span> sum&gt;S_right&#123;<br>            S_right &lt;- sum<br>        &#125;<br>    &#125;<br>    S3 &lt;- S_left + S_right<br>    <span class="hljs-keyword">return</span> S3<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cmath<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">crossingSubArray</span>(<span class="hljs-params">X,low,mid,high</span>):<br>    s_left = -cmath.inf<br>    <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(mid,low-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>        <span class="hljs-built_in">sum</span> += X[i]<br>        s_left = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">sum</span>,s_left)<br><br>    s_right = -cmath.inf<br>    <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(mid+<span class="hljs-number">1</span>,high+<span class="hljs-number">1</span>):<br>        <span class="hljs-built_in">sum</span> += X[i]<br>        s_right = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">sum</span>,s_right)<br>    <span class="hljs-keyword">return</span> s_left+s_right<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">maxSubArray</span>(<span class="hljs-params">X,low,high</span>):<br>    <span class="hljs-comment">#递归退出条件</span><br>    <span class="hljs-keyword">if</span> low == high:<br>        <span class="hljs-comment">#数组长度为1</span><br>        <span class="hljs-keyword">return</span> X[low]<br>    <span class="hljs-keyword">else</span>:<br>        mid = <span class="hljs-built_in">int</span>((low+high)/<span class="hljs-number">2</span>)<br>        s1 = maxSubArray(X,low,mid)<br>        s2 = maxSubArray(X,mid+<span class="hljs-number">1</span>,high)<br>        s3 = crossingSubArray(X,low,mid,high)<br>        s_max = <span class="hljs-built_in">max</span>([s1,s2,s3])<br>        <span class="hljs-built_in">print</span>(X)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot; from &quot;</span>,low,<span class="hljs-string">&quot; to &quot;</span>,high,<span class="hljs-string">&quot; maxSubArray= &quot;</span>,s_max)<br>        <span class="hljs-keyword">return</span> s_max<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">list</span> = [<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,-<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">3</span>,-<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">3</span>,<span class="hljs-number">7</span>,-<span class="hljs-number">1</span>]<br>    maxSubArray(<span class="hljs-built_in">list</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(<span class="hljs-built_in">list</span>)-<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<p>运行结果如图，由输出结果可看出求解过程</p>
+<p><img src="/2022-09-13-10-55-46.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
