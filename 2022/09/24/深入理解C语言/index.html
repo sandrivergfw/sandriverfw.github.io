@@ -1,0 +1,904 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="深入理解C语言 个人复习用，内容源于荣文戈老师的《C语言系统级编程》一课  基础内存 bit（比特）：最小的存储单元，二进制的状态0&#x2F;1 byte（字节）：若干个bit组成一个字节。 一个byte至少8个bit，常见的1byte&#x3D;8bit。 C语言中规定1byte&#x3D;CHAR_BIT个bit，即sizeof(char)&#x3D;1(B)   内存：一系列byte顺序排">
+<meta property="og:type" content="article">
+<meta property="og:title" content="z&#39;s blog">
+<meta property="og:url" content="http://example.com/2022/09/24/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3C%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="z&#39;s blog">
+<meta property="og:description" content="深入理解C语言 个人复习用，内容源于荣文戈老师的《C语言系统级编程》一课  基础内存 bit（比特）：最小的存储单元，二进制的状态0&#x2F;1 byte（字节）：若干个bit组成一个字节。 一个byte至少8个bit，常见的1byte&#x3D;8bit。 C语言中规定1byte&#x3D;CHAR_BIT个bit，即sizeof(char)&#x3D;1(B)   内存：一系列byte顺序排">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022-09-24-00-50-11.png">
+<meta property="og:image" content="http://example.com/2022-09-24-00-51-22.png">
+<meta property="og:image" content="http://example.com/2022-09-24-01-09-28.png">
+<meta property="og:image" content="http://example.com/2022-09-24-00-09-38.png">
+<meta property="article:published_time" content="2022-09-23T17:49:05.155Z">
+<meta property="article:modified_time" content="2022-09-23T17:48:20.163Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022-09-24-00-50-11.png">
+  
+  
+  
+  <title>z&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-24 01:49" pubdate>
+          September 24, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="深入理解C语言"><a href="#深入理解C语言" class="headerlink" title="深入理解C语言"></a>深入理解C语言</h1><blockquote>
+<p>个人复习用，内容源于荣文戈老师的《C语言系统级编程》一课</p>
+</blockquote>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><ul>
+<li>bit（比特）：最小的存储单元，二进制的状态0&#x2F;1</li>
+<li>byte（字节）：若干个bit组成一个字节。<ul>
+<li>一个byte<strong>至少</strong>8个bit，常见的1byte&#x3D;8bit。</li>
+<li>C语言中规定1byte&#x3D;CHAR_BIT个bit，即sizeof(char)&#x3D;1(B)</li>
+</ul>
+</li>
+<li>内存：一系列byte顺序排列组成的存储结构</li>
+<li>32位机：用32位bit表示byte的编号，即byte共有$2^32$个，对应了存储空间为$2^32&#x3D;4G$ (Byte)的存储空间大小</li>
+</ul>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>类型(type)分为Object Type和Function Type，即对象类型和函数类型。</p>
+<p>对象类型又包括<strong>完全对象类型</strong>和<strong>不完全对象类型</strong></p>
+<p>完全对象类型如：</p>
+<ul>
+<li>int </li>
+<li>short </li>
+<li>long</li>
+<li>float</li>
+<li>double</li>
+</ul>
+<p>不完全对象类型如：</p>
+<ul>
+<li>union</li>
+<li>struct</li>
+<li>enum</li>
+</ul>
+<p>判断一个式子，如int[5]，是否是对象类型，可以用sizeof()进行判断：<br>sizeof()只引导对象类型</p>
+<h4 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a>sizeof</h4><h3 id="数组对象类型"><a href="#数组对象类型" class="headerlink" title="数组对象类型"></a>数组对象类型</h3><p><strong>C语言中只有一维数组</strong>：任何数组的类型都是array of T，其中T是数组元素的类型。</p>
+<p><code>int a[2][3][4]</code>，a标识的对象的类型是int[2][3][4]，属于数组类型，数组元素对象类型为int[3][4]</p>
+<h3 id="指针对象类型"><a href="#指针对象类型" class="headerlink" title="指针对象类型"></a>指针对象类型</h3><p>指针对象类型属于<strong>非数组对象类型</strong>。</p>
+<blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//这是因为64位机中地址有8位</span><br><span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>*)=<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>**)=<span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>任何一种对象类型，都存在指向其的一个指针对象类型，反之亦然。(Reference Type &lt;–&gt; Pointer Type)</p>
+<table>
+<thead>
+<tr>
+<th align="center">Reference Type</th>
+<th align="center">Pointer Type</th>
+<th align="center">Element Type(of Reference type)</th>
+<th align="center">Variable Declaration(of Reference type)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="center">int*</td>
+<td align="center">&#x2F;</td>
+<td align="center">int a</td>
+</tr>
+<tr>
+<td align="center">int*</td>
+<td align="center">int**</td>
+<td align="center">&#x2F;</td>
+<td align="center">int* a</td>
+</tr>
+<tr>
+<td align="center">int[3]</td>
+<td align="center">int(*)[3]</td>
+<td align="center">int</td>
+<td align="center">int a[3]</td>
+</tr>
+<tr>
+<td align="center">int(*)[3]</td>
+<td align="center">int(**)[3]</td>
+<td align="center">&#x2F;</td>
+<td align="center">int(*a)[3]</td>
+</tr>
+<tr>
+<td align="center">int*[3]</td>
+<td align="center">int*(*)[3]</td>
+<td align="center">int*</td>
+<td align="center">int* a[3]</td>
+</tr>
+<tr>
+<td align="center">int*(*)[3]</td>
+<td align="center">int*(**)[3]</td>
+<td align="center">&#x2F;</td>
+<td align="center">int*(*a)[3]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>int(*)[2]是指向int[2]的指针对象类型<br>int*[2]是数组对象类型，其数组元素对象类型为int*<br>int*(*)[2]是指向int*[2]的指针对象类型</p>
+</blockquote>
+<h4 id="Typedef"><a href="#Typedef" class="headerlink" title="Typedef"></a>Typedef</h4><table>
+<thead>
+<tr>
+<th align="center">type</th>
+<th align="center">typedef statement</th>
+<th align="center">typedef Declaration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">char</td>
+<td align="center">typedef char INT1</td>
+<td align="center">INT1 c</td>
+</tr>
+<tr>
+<td align="center">int[2]</td>
+<td align="center">typedef int AINT[2]</td>
+<td align="center">AINT a</td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>* p,q;<span class="hljs-comment">//p为int*类型，q为int类型</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span>* PINT;<br>PINT r,s <span class="hljs-comment">//r,s均为int*类型</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="对象-object"><a href="#对象-object" class="headerlink" title="对象(object)"></a>对象(object)</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>objects are composed of contiguous sequences of one of more bytes </p>
+</blockquote>
+<p>对象是内存中的一段连续的存储空间</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>考察对象的属性：</p>
+<ul>
+<li>Object Name（对象名字）：标识符<ul>
+<li>当malloc分配得到对象时没有名字</li>
+</ul>
+</li>
+<li>Object Representation（对象表示）：对象对应在内存中由各bit组成的二进制串</li>
+<li>Object Value：Object Type+Object Representation（对象类型+对象表示）</li>
+</ul>
+<h4 id="Object-Value"><a href="#Object-Value" class="headerlink" title="Object Value"></a>Object Value</h4><p>对对象取<strong>值</strong>（Value)，得到这个值的内容和值的类型（内存视角，所得的Value为内存的表示值，Value Type为表示值的类型）：</p>
+<p>&lt;Value,Value Type&gt;</p>
+<p>区分Value Type和对象自身的类型Object Type，对应规则如下</p>
+<ul>
+<li>Object Type为非数组对象类型<ul>
+<li>Value Type &#x3D; Object Type</li>
+<li>Object Representation按照规则转换成Value</li>
+</ul>
+</li>
+<li>Object Type为数组对象类型<ul>
+<li>Value Type &#x3D; Pointer Type points to element Object Type</li>
+<li>Value &#x3D; head address of first element</li>
+</ul>
+</li>
+</ul>
+<p>例如：<br><code>int a[2];</code></p>
+<ul>
+<li>a是一个对象，Object Type为int[2]，为数组对象类型,元素的对象类型为int</li>
+<li>对a取值，Value Type为指向元素类型的指针类型，即int*，Value为第一个元素的首地址</li>
+</ul>
+<h3 id="对象分配"><a href="#对象分配" class="headerlink" title="对象分配"></a>对象分配</h3><p>对象分配（分配一段内存）的方式主要是以下两种：</p>
+<ol>
+<li>变量声明</li>
+<li>malloc分配</li>
+</ol>
+<h4 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h4><p>变量声明可以形式化为 Obj_T N</p>
+<ul>
+<li>Obj_T : Object Type</li>
+<li>N : Object identifier</li>
+</ul>
+<p>如<code>int a</code>，其中a为标识符，在编译时存放在符号表中用于识别和定位这块内存（对象），int则规定了这块内存的类型和大小</p>
+<p>对于内存，有两个概念：</p>
+<ul>
+<li>内存的变量类型 &lt;-&gt; 内存对应对象的类型Obj_T</li>
+<li>内存的表示值类型：对应上述的<strong>值</strong>(&lt;Value,Value Type&gt;)，内存的表示值是外界通过内存对应的对象&#x2F;变量去观察这一块内存得到的结果</li>
+</ul>
+<h3 id="内存六元组"><a href="#内存六元组" class="headerlink" title="内存六元组"></a>内存六元组</h3><p>为刻画对象，提出内存六元组的逻辑模型。</p>
+<ul>
+<li>Address：对象对应内存的第一个字节的编号</li>
+<li>Object Type: 对象类型</li>
+<li>Name: 变量名称</li>
+<li>Size：内存大小(Byte)</li>
+<li>Value：内存的表示值（01串）</li>
+<li>Value Type: 表示值的类型</li>
+</ul>
+<p>其中address由系统分配，确定后无法更改</p>
+<p>涉及内存的常见操作有：<br>内存分配、内存赋值、内存释放、内存信息读取，在这里我们首先关注内存定位的过程</p>
+<h3 id="内存定位"><a href="#内存定位" class="headerlink" title="内存定位"></a>内存定位</h3><p>内存定位方式有两种：</p>
+<ol>
+<li>变量名&#x2F;Identifier定位</li>
+<li>*运算符定位：对于表达式exp，其取值为&lt;Value,Value_Type&gt;，若Value_Type是一个指针类型，则可以使用*exp定位到Value对应字节编号开头的一段内存</li>
+</ol>
+<h4 id="运算符定位"><a href="#运算符定位" class="headerlink" title="*运算符定位"></a>*运算符定位</h4><p>对于*运算符定位（如*p，p的obj_t为int*)，过程如下：</p>
+<ol>
+<li>对p取值，得到&lt;value,int*&gt;</li>
+<li>校验p的value type为有效指针类型</li>
+<li>根据value定位到内存地址，该内存对应的obj_t为int</li>
+<li>不妨令int temp &#x3D; *p,temp和*p的作用完全一致</li>
+</ol>
+<p>表达式(&lt;value,Pointer Type&gt;)做*运算得到的返回值为&lt;obj_address&#x3D;value,Reference Type&gt;，*运算符相当于向系统说明exp获取到的值是一个有效address，可用于定位对象&#x2F;内存。<br><img src="/2022-09-24-00-50-11.png" srcset="/img/loading.gif" lazyload><br><img src="/2022-09-24-00-51-22.png" srcset="/img/loading.gif" lazyload></p>
+<p>对于指针变量p，<strong>p+n</strong>依然具备定位的功能：p取值value type为指针类型，n为常数，为了使得双方类型兼容，系统计算返回的value’&#x3D;value+sizeof(<em>p)*n，</em>p表示p指针类型所指向的reference type，上述操作完成了地址的偏移，返回的value Type与p的value type保持一致。</p>
+<p>*(exp+n)和exp[n]是一致的，所以int*p ; (p+1)[2]和p[3]是一致的</p>
+<p><img src="/2022-09-24-01-09-28.png" srcset="/img/loading.gif" lazyload></p>
+<p>解析：</p>
+<ol>
+<li>n：&lt;address&#x3D;0x00FF3811,obj_t&#x3D;int[2][3][4][5],value&#x3D;0x00FF3811,Value_Type&#x3D;int(*)[3][4][5]&gt;</li>
+<li>&amp;n: &lt;value&#x3D;n.value,Value_Type&#x3D;pointer points to n.obj_t&#x3D;int(*)[2][3][4][5]&gt;</li>
+<li>&amp;n+1: &amp;n是一个指针类型，&amp;n+1保留value type,&lt;value&#x3D;&amp;n.value+1*sizeof(*(&amp;n))&#x3D; 0x00FF3811+1*sizeof(int[2][3][4][5])&gt;</li>
+<li>n[0]: 相当于*n，定位得到对象&lt;address&#x3D;n.value,obj_t&#x3D;int[3][4][5]&gt;，取其表示值为&lt;value&#x3D;0x00FF3811,Value_Type&#x3D;int(*)[4][5]&gt;</li>
+<li>n[0]+1:  n[0]的表示值如上，属于指针类型，n[0]+1的值为&lt;value&#x3D;0x00FF3811+1*sizeof(int[4][5]),int(*)[4][5]&gt;</li>
+<li>n[0][0]: 相当于*(n[0])，定位得到对象&lt;address&#x3D;0x00FF3811,obj_t&#x3D;int[4][5]&gt;，取其表示值为&lt;value&#x3D;0x00FF3811,Value_Type&#x3D;0x00FF3811,int(*)[5]&gt;</li>
+<li>n[0][0]+1: n[0][0]的值如上，属于指针类型，n[0][0]+1的值为&lt;value&#x3D;0x00FF3811+1*sizeof(int[5]),value_type&#x3D;int(*)[5]&gt;</li>
+<li>n[0][0][0]: 等价于*(n[0][0])，定位得到对象&lt;address&#x3D;0x00FF3811,obj_type&#x3D;int[5]&gt;，取其表示值为&lt;value&#x3D;0x00FF3811,value_type&#x3D;int*&gt;</li>
+<li>n[0][0][0]+1: n[0][0][0]表示值已知，属于指针类型，则n[0][0][0]+1的值为&lt;value&#x3D;0x00FF3811+1*sizeof(int),value_type&#x3D;int*&gt;</li>
+<li>n[0][0][0][0]: *(n[0][0][0])，定位得到对象&lt;address&#x3D;0x00FF3811,obj_t&#x3D;int&gt;,值为&lt;value&#x3D;0,value_type&#x3D;int&gt;</li>
+<li>n[0][0][0][0]+1: &lt;value:1, value_type&#x3D;int&gt;</li>
+</ol>
+<h4 id="变量名定位"><a href="#变量名定位" class="headerlink" title="变量名定位"></a>变量名定位</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//int a ; // 已声明，系统分配内存</span><br>a = <span class="hljs-number">10</span> ; <span class="hljs-comment">//在a=10的过程中</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>a是一个变量名，名称a及对象的首地址记录在符号表中</li>
+<li>a是一个左值（可定位），用a定位内存</li>
+<li>计算等号右边的表达式，exp的值为&lt;10,int&gt;</li>
+<li>类型匹配：a的六元组中的Value Type&#x3D;int </li>
+<li>内存赋值：系统按照a的Value Type将右值Value(10)转换为int型的32位01串并填入内存</li>
+</ol>
+<h3 id="内存操作"><a href="#内存操作" class="headerlink" title="内存操作"></a>内存操作</h3><ol>
+<li>（使用表达式）定位内存<ol>
+<li>变量名表达式定位内存</li>
+<li>*指针类型表达式定位内存</li>
+</ol>
+</li>
+<li>对内存的操作<ol>
+<li>获取内存首地址：&amp;（exp)：要求exp为左值表达式（可以定位到内存），过程如下<ol>
+<li>exp定位内存（对象） </li>
+<li>&amp;操作：取对象的address和Obj_T</li>
+<li>返回值为&lt;address,Obj_T&gt;<br>例如：<code>int a=10;</code>&amp;a得到&lt;address,int*&gt;</li>
+</ol>
+</li>
+<li>获得内存大小：sizeof(exp)<ol>
+<li>exp的Value Type需要是对象类型</li>
+<li>返回值类型为size_t</li>
+</ol>
+</li>
+<li>获得内存的表示值：表达式本身</li>
+</ol>
+</li>
+</ol>
+<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><h3 id="左值（Lval"><a href="#左值（Lval" class="headerlink" title="左值（Lval)"></a>左值（Lval)</h3><p>左值本意不是等号左边的表达式，而是locator，可以定位内存&#x2F;Object的表达式。</p>
+<p><img src="/2022-09-24-00-09-38.png" srcset="/img/loading.gif" lazyload></p>
+<p>左值只有两种情况：identifier和*exp，exp的值为&lt;value,pointer&gt;</p>
+<p>并不是所有左值都能放到等号左边，只有<strong>Modifiable lvalue</strong>才能放到左边，条件是lvalue所定位的内存：</p>
+<ul>
+<li>变量类型不是数组类型</li>
+<li>变量类型不是不完全类型</li>
+<li>不能被const修饰</li>
+<li>如果变量类型是struct&#x2F;union，则成员的变量类型也不能被const修饰</li>
+</ul>
+<h3 id="表达式文法约定"><a href="#表达式文法约定" class="headerlink" title="表达式文法约定"></a>表达式文法约定</h3><h4 id="基础表达式"><a href="#基础表达式" class="headerlink" title="基础表达式"></a>基础表达式</h4><ul>
+<li>标识符：变量名或函数名</li>
+<li>常量</li>
+<li>字符串</li>
+<li>括号</li>
+<li><em>泛型选择</em></li>
+</ul>
+<h4 id="后缀表达式"><a href="#后缀表达式" class="headerlink" title="后缀表达式"></a>后缀表达式</h4><ul>
+<li>[]</li>
+<li>.</li>
+<li>-&gt;</li>
+<li>++&#x2F;–</li>
+<li>(typename){Initializer-list}</li>
+<li>()：如func(1,2)</li>
+</ul>
+<h4 id="一元表达式"><a href="#一元表达式" class="headerlink" title="一元表达式"></a>一元表达式</h4><ul>
+<li>++&#x2F;–</li>
+<li>&amp;</li>
+<li><ul>
+<li></li>
+</ul>
+</li>
+<li>+&#x2F;-</li>
+<li>~&#x2F;！</li>
+<li><em>sizeof</em></li>
+<li><em>_Alignof</em></li>
+</ul>
+<h4 id="Cast表达式"><a href="#Cast表达式" class="headerlink" title="Cast表达式"></a>Cast表达式</h4><p>(typename)exp</p>
+<h4 id="条件表达式"><a href="#条件表达式" class="headerlink" title="条件表达式"></a>条件表达式</h4><ul>
+<li>&lt; &#x2F; &gt; &#x2F; &lt;&#x3D; &#x2F; &gt;&#x3D; </li>
+<li>&#x3D;&#x3D; &#x2F; !&#x3D;</li>
+</ul>
+<h4 id="运算表达式"><a href="#运算表达式" class="headerlink" title="运算表达式"></a>运算表达式</h4><ul>
+<li><ul>
+<li></li>
+</ul>
+</li>
+<li>&#x2F;</li>
+<li>%</li>
+<li>+&#x2F;-</li>
+</ul>
+<h4 id="位运算表达式"><a href="#位运算表达式" class="headerlink" title="位运算表达式"></a>位运算表达式</h4><ul>
+<li><blockquote>
+<blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>&lt;&lt;</li>
+<li>&amp;</li>
+<li>^</li>
+<li>|</li>
+</ul>
+<h4 id="赋值表达式"><a href="#赋值表达式" class="headerlink" title="赋值表达式"></a>赋值表达式</h4><ul>
+<li>&#x3D;</li>
+<li>*&#x3D;</li>
+<li>&#x2F;&#x3D;</li>
+<li>%&#x3D;</li>
+<li>+&#x3D;</li>
+<li>-&#x3D;</li>
+<li>&lt;&lt;&#x3D;</li>
+<li>&gt;&gt;&#x3D;</li>
+<li>&amp;&#x3D;</li>
+<li>^&#x3D;</li>
+<li>|&#x3D;</li>
+</ul>
+<h4 id="逻辑运算表达式"><a href="#逻辑运算表达式" class="headerlink" title="逻辑运算表达式"></a>逻辑运算表达式</h4><ul>
+<li>&amp;&amp; </li>
+<li>||</li>
+<li>三目运算符 ? :</li>
+</ul>
+<h4 id="逗号运算表达式"><a href="#逗号运算表达式" class="headerlink" title="逗号运算表达式"></a>逗号运算表达式</h4><p>&#x2F;</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>对于对象p，用内存六元组去刻画它的属性<br>*<strong>p</strong>:</p>
+<ol>
+<li>p取值&lt;value,value_type&gt;</li>
+<li>*运算，定位到对象&lt;address&#x3D;value,obj_type&#x3D;reference type which is pointed by value_type&gt;</li>
+<li>*p对象取值: &lt;value,value_type&gt;，此处的value和value_type依据Obj_type而定</li>
+</ol>
+<p><strong>&amp;p</strong>: </p>
+<ol>
+<li>p定位到对象</li>
+<li>&amp;运算，返回&lt;value&#x3D;address, pointer type points to obj_type&gt;，此时返回值并不是一个lval</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/09/24/深入理解C语言/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 24, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/10/JDBC/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
